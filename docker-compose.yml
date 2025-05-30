@@ -1,0 +1,27 @@
+
+
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: Username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: budgy_development
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_HOST=postgres
+
+volumes:
+  postgres_data:
