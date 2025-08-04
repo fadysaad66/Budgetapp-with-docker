@@ -33,11 +33,6 @@ jobs:
         with:
           ruby-version: 3.1.2
 
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
-
       - name: Run database setup
         run: |
           bin/rails db:create db:migrate
